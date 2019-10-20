@@ -108,8 +108,8 @@ module.exports = (env) ->
       @base.debug "Requesting update"
 
       present = false
-      @remote.isAlive (err) =>
-        present = true if err?
+      @remote.isAlive (res) =>
+        present = true if res is 0
         @base.debug "Presense state is #{present}"
         @_setPresence present
         @base.scheduleUpdate @_requestUpdate, @config.interval * 1000
